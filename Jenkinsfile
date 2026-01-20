@@ -1,12 +1,10 @@
-
 pipeline {
     agent any
 
     stages {
-
         stage('Checkout') {
             steps {
-                echo 'Pulling code from GitHub'
+                echo 'Code checked out from GitHub'
             }
         }
 
@@ -16,19 +14,10 @@ pipeline {
             }
         }
 
-        stage('Run Energy App') {
+        stage('Run Docker Container') {
             steps {
-                sh 'docker run -i energy-devops'
+                sh 'docker run --rm energy-devops'
             }
-        }
-    }
-
-    post {
-        success {
-            echo 'CI pipeline completed successfully'
-        }
-        failure {
-            echo 'CI pipeline failed'
         }
     }
 }
