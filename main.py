@@ -1,5 +1,6 @@
 # Energy Monitoring System (EEE + DevOps)
 
+
 import os
 
 voltage = float(os.getenv("VOLTAGE", 230))
@@ -9,7 +10,7 @@ time = float(os.getenv("TIME", 2))
 power = voltage * current
 energy = power * time
 
-SAFE_POWER_LIMIT = 1000  # relay trip threshold
+SAFE_POWER_LIMIT = 1000  # Relay threshold
 
 print("\n--- Energy Report ---")
 print(f"Voltage : {voltage} V")
@@ -18,18 +19,11 @@ print(f"Power   : {power} W")
 print(f"Energy  : {energy} Wh")
 
 if power > SAFE_POWER_LIMIT:
-    print("⚠️ RELAY TRIP: OVERLOAD DETECTED")
+    status = "RELAY TRIP: OVERLOAD DETECTED"
 else:
-    print("✅ Power within safe limit")
+    status = "POWER NORMAL"
 
 print("Status :", status)
-# Display report
-print("\n--- Energy Report ---")
-print(f"Voltage : {voltage} V")
-print(f"Current : {current} A")
-print(f"Power   : {power} W")
-print(f"Energy  : {energy} Wh")
-print(f"Status  : {status}")
 
 # Logging data
 log_entry = (
